@@ -75,20 +75,16 @@ const getMyCollection = () => {
     .fail((error) => ui.failure(error));
 };
 
-const searchCards = function(data) {
-  let requestUrl = 'https://api.magicthegathering.io/v1/cards?set=ori,bfz,ogw';
-  requestUrl += ($('#name').is(':checked')) ? '&name=' + data.query : '';
-  requestUrl += ($('#text').is(':checked')) ? '&text=' + data.query : '';
-  requestUrl += ($('#type').is(':checked')) ? '&type=' + data.query : '';
-  if ($('#boolean-or').is(':checked') && data.colors) {
-    requestUrl += `&colors=[${data.colors}]`;
-  } else if (data.colors) {
-    requestUrl += '&colors=' + data.colors;
-  }
+const searchBeers = function(data) {
+  let requestUrl = app.url + 'find-beer/' + data.query;
   $.ajax({
-      url: requestUrl,
+      method: 'GET',
+      url: requestUrl
     })
-    .success((cards) => ui.displaySearchResults(cards))
+    .success(function(beers) {
+      let filteredBeers = beers.filter((e) => "labels" in e);
+      ui.displaySearchResults(filteredBeers);
+    })
     .fail((error) => ui.failure(error));
 };
 
@@ -98,6 +94,6 @@ module.exports = {
   signIn,
   signOut,
   changePass,
-  searchCards,
+  searchBeers,
   getMyCollection,
 };
