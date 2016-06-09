@@ -95,22 +95,30 @@ const removeBeer = function(bdbId, eventTarget) {
     });
 };
 
-const updateQuantity = (name, quantity) => {
+const toggleFavorite = (bdbId, eventTarget) => {
   $.ajax({
       method: 'PATCH',
-      url: app.url + 'update-quantity/',
+      url: app.url + 'toggle-favorite/',
       headers: {
         Authorization: 'Token token=' + app.user.token,
       },
       data: {
-        card: {
-          name: name,
-          count: quantity
+        beers: {
+          id: bdbId,
         }
       },
     })
     .success(() => {
-      Materialize.toast(`Set ${name} to ${quantity} cards`, 3000);
+      Materialize.toast(`Toggled favoriteness!`, 3000);
+      if ($(eventTarget).hasClass('blue')) {
+        $(eventTarget).removeClass('blue');
+        $(eventTarget).text('Unfavorite');
+        $(eventTarget).addClass('yellow');
+      } else if ($(eventTarget).hasClass('yellow')) {
+        $(eventTarget).removeClass('yellow');
+        $(eventTarget).text('Favorite');
+        $(eventTarget).addClass('blue');
+      }
     })
     .fail(() => {
       failure();
@@ -129,17 +137,12 @@ const displayMyBeers = (beers) => {
   $("#search-result-holder").on("click", (event) => {
     event.preventDefault();
     let bdbId = ($(event.target).data()).bdbId;
-    console.log(bdbId);
-    removeBeer(bdbId, event.target);
-  //   let quantity = $(event.target).siblings('input').val();
-  //   if ($(event.target).is("img")) {
-  //     $('#card-display').html(showCardTemplate($(event.target).attr("src")));
-  //     $('#card-display').openModal();
-  //   } else if (quantity !== undefined && dataId === 'update-button') {
-  //     updateQuantity(cardName, quantity);
-  //   } else if (cardName !== undefined) {
-  //     removeCardFromCollection(cardName, event.target);
-  //   }
+    let button = ($(event.target).data()).buttonId;
+    if (button === 'remove') {
+      removeBeer(bdbId, event.target);
+    } else if (button === 'favorite') {
+      toggleFavorite(bdbId, event.target);
+    }
   });
 };
 
@@ -153,6 +156,5 @@ module.exports = {
   displaySearchResults,
   displayMyBeers,
   blankOutSearchArea,
-  updateQuantity,
   removeBeer
 };
