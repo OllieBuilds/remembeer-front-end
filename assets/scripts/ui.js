@@ -61,29 +61,22 @@ const addCardToCollection = (name) => {
     });
 };
 
-const displaySearchResults = function(cards) {
-  let cardListingTemplate = require('./templates/card-listing.handlebars');
-  let showCardTemplate = require('./templates/card-display.handlebars');
-
-  $('#search-result-holder').html(cardListingTemplate({
-    cards:cards.cards
-  }));
+const displaySearchResults = function(beers) {
+  let beerListingTemplate = require('./templates/beer-listing.handlebars');
+  $('#search-result-holder').html(beerListingTemplate(beers));
 
   $("#search-result-holder").off("click");
-
+  //
   $("#search-result-holder").on("click", (event) => {
     event.preventDefault();
 
     let target = $(event.target);
-    let cardName = $(event.target).data().cardName;
+    let beerId = $(event.target).data().beerId;
 
     if (!app.user && target.is("button")) {
-      Materialize.toast('Sign in to add to your collection', 3000);
-    } else if ($(event.target).is("img")) {
-      $('#card-display').html(showCardTemplate($(event.target).attr("src")));
-      $('#card-display').openModal();
-    } else if (cardName !== undefined) {
-      addCardToCollection(cardName);
+      Materialize.toast('Sign in to remember this beer', 3000);
+    } else if (beerId !== undefined) {
+      addBeerToCollection(beerId);
     }
   });
 };
