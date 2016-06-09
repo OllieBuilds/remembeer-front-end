@@ -81,23 +81,17 @@ const displaySearchResults = function(beers) {
   });
 };
 
-const removeCardFromCollection = function(name, eventTarget) {
+const removeBeer = function(bdbId, eventTarget) {
   $.ajax({
       method: 'DELETE',
-      dataType: 'json',
-      url: app.url + 'remove-card/',
+      url: app.url + 'my-beer/' + bdbId,
       headers: {
         Authorization: 'Token token=' + app.user.token,
-      },
-      data: {
-        card: {
-          name: name
-        }
       }
     })
     .success(() => {
-      Materialize.toast(`Removed ${name} from your collection`, 3000);
-      $(eventTarget).parents().eq(3).hide();
+      Materialize.toast(`Beer forgotten!`, 3000);
+      $(eventTarget).parents().eq(1).hide();
     });
 };
 
@@ -131,11 +125,12 @@ const displayMyBeers = (beers) => {
     beers
   }));
 
-  // $("#search-result-holder").off("click");
-  // $("#search-result-holder").on("click", (event) => {
-  //   event.preventDefault();
-  //   let dataId = ($(event.target).data()).id;
-  //   let cardName = $(event.target).data().cardName;
+  $("#search-result-holder").off("click");
+  $("#search-result-holder").on("click", (event) => {
+    event.preventDefault();
+    let bdbId = ($(event.target).data()).bdbId;
+    console.log(bdbId);
+    removeBeer(bdbId, event.target);
   //   let quantity = $(event.target).siblings('input').val();
   //   if ($(event.target).is("img")) {
   //     $('#card-display').html(showCardTemplate($(event.target).attr("src")));
@@ -145,7 +140,7 @@ const displayMyBeers = (beers) => {
   //   } else if (cardName !== undefined) {
   //     removeCardFromCollection(cardName, event.target);
   //   }
-  // });
+  });
 };
 
 module.exports = {
@@ -159,5 +154,5 @@ module.exports = {
   displayMyBeers,
   blankOutSearchArea,
   updateQuantity,
-  removeCardFromCollection
+  removeBeer
 };
