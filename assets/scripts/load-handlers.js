@@ -30,11 +30,11 @@ const pageHandlers = () => {
     let data = getFormFields(this);
     api.changePass(data);
   });
-  $('#card-search').on('submit', function(event) {
+  $('#beer-search').on('submit', function(event) {
     event.preventDefault();
     let data = getFormFields(this);
     console.log(data);
-    api.searchCards(data);
+    api.searchBeers(data);
   });
   $('.nav-wrapper').on('click', function(event) {
     event.preventDefault();
