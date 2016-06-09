@@ -66,7 +66,9 @@ const displaySearchResults = function(beers) {
   $('#search-result-holder').html(beerListingTemplate(beers));
 
   $("#search-result-holder").off("click");
-  //
+
+  $('#search')[0].value = '';
+
   $("#search-result-holder").on("click", (event) => {
     event.preventDefault();
 
