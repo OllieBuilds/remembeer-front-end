@@ -39,8 +39,8 @@ const pageHandlers = () => {
   $('.nav-wrapper').on('click', function(event) {
     event.preventDefault();
     let dataId = $(event.target).data().id;
-    if (dataId === 'my-collection') {
-      api.getMyCollection();
+    if (dataId === 'my-beers') {
+      api.getMyBeers();
     } else if (dataId === 'search') {
       ui.blankOutSearchArea();
     }

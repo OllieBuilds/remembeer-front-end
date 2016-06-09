@@ -123,28 +123,29 @@ const updateQuantity = (name, quantity) => {
     });
 };
 
-const displayMyCollection = (cards) => {
-  cards = cards.collections;
-  let cardListingTemplate = require('./templates/collection-listing.handlebars');
-  let showCardTemplate = require('./templates/card-display.handlebars');
-  $('#search-result-holder').html(cardListingTemplate({
-    cards
+const displayMyBeers = (beers) => {
+  beers = beers.beers;
+  let myBeersTemplate = require('./templates/my-beers.handlebars');
+  console.log(beers);
+  $('#search-result-holder').html(myBeersTemplate({
+    beers
   }));
-  $("#search-result-holder").off("click");
-  $("#search-result-holder").on("click", (event) => {
-    event.preventDefault();
-    let dataId = ($(event.target).data()).id;
-    let cardName = $(event.target).data().cardName;
-    let quantity = $(event.target).siblings('input').val();
-    if ($(event.target).is("img")) {
-      $('#card-display').html(showCardTemplate($(event.target).attr("src")));
-      $('#card-display').openModal();
-    } else if (quantity !== undefined && dataId === 'update-button') {
-      updateQuantity(cardName, quantity);
-    } else if (cardName !== undefined) {
-      removeCardFromCollection(cardName, event.target);
-    }
-  });
+
+  // $("#search-result-holder").off("click");
+  // $("#search-result-holder").on("click", (event) => {
+  //   event.preventDefault();
+  //   let dataId = ($(event.target).data()).id;
+  //   let cardName = $(event.target).data().cardName;
+  //   let quantity = $(event.target).siblings('input').val();
+  //   if ($(event.target).is("img")) {
+  //     $('#card-display').html(showCardTemplate($(event.target).attr("src")));
+  //     $('#card-display').openModal();
+  //   } else if (quantity !== undefined && dataId === 'update-button') {
+  //     updateQuantity(cardName, quantity);
+  //   } else if (cardName !== undefined) {
+  //     removeCardFromCollection(cardName, event.target);
+  //   }
+  // });
 };
 
 module.exports = {
@@ -155,6 +156,8 @@ module.exports = {
   signOutSuccess,
   changePassSuccess,
   displaySearchResults,
-  displayMyCollection,
-  blankOutSearchArea
+  displayMyBeers,
+  blankOutSearchArea,
+  updateQuantity,
+  removeCardFromCollection
 };

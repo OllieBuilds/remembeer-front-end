@@ -62,16 +62,16 @@ const changePass = (data) => {
     .fail((error) => ui.failure(error));
 };
 
-const getMyCollection = () => {
+const getMyBeers = () => {
   console.log('Start request.');
   $.ajax({
       method: 'GET',
-      url: app.url + 'collection/',
+      url: app.url + 'my-beer/',
       headers: {
         Authorization: 'Token token=' + app.user.token,
       },
     })
-    .done((data) => ui.displayMyCollection(data))
+    .done((beers) => ui.displayMyBeers(beers))
     .fail((error) => ui.failure(error));
 };
 
@@ -80,9 +80,6 @@ const searchBeers = function(data) {
   $.ajax({
       method: 'GET',
       url: requestUrl,
-      headers: {
-        Authorization: 'Token token=' + app.user.token,
-      },
     })
     .success(function(beers) {
       let filteredBeers = beers.filter((e) => "labels" in e);
@@ -98,5 +95,5 @@ module.exports = {
   signOut,
   changePass,
   searchBeers,
-  getMyCollection,
+  getMyBeers,
 };
