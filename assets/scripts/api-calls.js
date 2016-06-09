@@ -79,7 +79,10 @@ const searchBeers = function(data) {
   let requestUrl = app.url + 'find-beer/' + data.query;
   $.ajax({
       method: 'GET',
-      url: requestUrl
+      url: requestUrl,
+      headers: {
+        Authorization: 'Token token=' + app.user.token,
+      },
     })
     .success(function(beers) {
       let filteredBeers = beers.filter((e) => "labels" in e);

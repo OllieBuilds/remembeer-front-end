@@ -39,25 +39,25 @@ const changePassSuccess = () => {
   Materialize.toast('Password changed succesfully', 3000);
 };
 
-const addCardToCollection = (name) => {
+const addBeerToCollection = (bdb_id) => {
   $.ajax({
       method: 'POST',
       dataType: 'json',
-      url: app.url + 'add-card/',
+      url: app.url + 'add-beer/',
       headers: {
         Authorization: 'Token token=' + app.user.token,
       },
       data: {
-        card: {
-          name: name
+        beers: {
+          id: bdb_id
         }
       }
     })
     .success(() => {
-      Materialize.toast(`Added ${name} to your collection`, 3000);
+      Materialize.toast(`Remembeered!`, 3000);
     })
     .fail(() => {
-      Materialize.toast('That card is already in your collection', 3000);
+      Materialize.toast('You already Remembeered that beer!', 3000);
     });
 };
 
