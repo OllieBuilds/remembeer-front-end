@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Magic Traq</title>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+  <!-- Google Material Icons -->
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="vendor.bundle.js" type="text/javascript" charset="utf-8"></script>
+  <script src="bundle.js" type="text/javascript" charset="utf-8"></script>
+  <!-- Compiled and minified JavaScript -->
+  <script src="./assets/scripts/materialize.min.js" defer></script>
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="nav-wrapper light-blue">
+      <a href="#" class="brand-logo">Magic Traq</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#" data-id="search">Search</a></li>
+        <li class="hide-until-sign-in"><a href="#" data-id="my-collection">My Collection</a></li>
+        <li class="hide-until-sign-in modal-trigger" data-target="account"><a data-id="my-account" href="#!">My Account</a></li>
+        <!-- Login -->
+        <li class="show-until-sign-in"><a class="waves-effect waves-light btn modal-trigger deep-orange" data-target="login">Sign In</a></li>
+        <!-- Logout -->
+        <li class="hide-until-sign-in"><a class="hide-until-sign-in waves-effect waves-light btn red darken-3" id="sign-out-1">Sign Out</a></li>
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+        <li><a href="#" data-id="search">Search</a></li>
+        <li class="hide-until-sign-in"><a href="#" data-id="my-collection">My Collection</a></li>
+        <li class="hide-until-sign-in modal-trigger" data-target="account"><a data-id="my-account" href="#!">My Account</a></li>
+        <!-- Login -->
+        <li class="show-until-sign-in"><a class="waves-effect waves-light btn modal-trigger deep-orange" data-target="login">Sign In</a></li>
+        <!-- Logout -->
+        <li class="hide-until-sign-in"><a class="waves-effect waves-light btn red darken-3" id="sign-out-2">Sign Out</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <!-- row 1 -->
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <section id="search-result-holder">
+          <!-- Search results and my collection show up here -->
+        </section>
+      </div>
+    </div>
+    <!-- row 2 -->
+    <!-- Search Form -->
+    <div class="row">
+      <form id="card-search">
+        <div class="row">
+          <div class="input-field">
+            <input id="search" type="search" name="query">
+            <label for="search"><i class="material-icons">search</i></label>
+            <i class="material-icons">close</i>
+          </div>
+          <button class="waves-effect waves-light btn deep-orange right-align" type="submit">Search</button>
+          <button class="waves-effect waves-light btn modal-trigger light-blue" data-target="search-options">Search options</button>
+        </div>
+        <!-- Search Options Modal -->
+        <div id="search-options" class="modal">
+          <div class="modal-content">
+            <div class="row">
+              <div class="col s6">
+                <h5 class="left-align">Search Options</h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12">
+                <div class="row">
+                  <!-- Text search fields -->
+                  <div class="col s4">
+                    <p>Search Fields</p>
+                    <p>
+                      <input type="checkbox" name="options[]" value="name" id="name" checked="checked" />
+                      <label for="name">Name</label>
+                    </p>
+                    <p>
+                      <input type="checkbox" name="options[]" value="type" id="type" />
+                      <label for="type">Type</label>
+                    </p>
+                    <p>
+                      <input type="checkbox" name="options[]" value="text" id="text" />
+                      <label for="text">Text</label>
+                    </p>
+                  </div>
+                  <!-- Color search Options -->
+                  <div class="col s4">
+                    <p>Colors</p>
+                    <p>
+                      <input type="checkbox" name="colors[]" value="blue" id="blue" />
+                      <label for="blue">Blue</label>
+                    </p>
+                    <p>
+                      <input type="checkbox" name="colors[]" value="black" id="black" />
+                      <label for="black">Black</label>
+                    </p>
+                    <p>
+                      <input type="checkbox" name="colors[]" value="red" id="red" />
+                      <label for="red">Red</label>
+                    </p>
+                    <p>
+                      <input type="checkbox" name="colors[]" value="green" id="green" />
+                      <label for="green">Green</label>
+                    </p>
+                    <p>
+                      <input type="checkbox" name="colors[]" value="white" id="white" />
+                      <label for="white">White</label>
+                    </p>
+                  </div>
+                  <!-- Other options? -->
+                  <div class="col s4">
+                    <p>Color Boolean Choice</p>
+                    <p>
+                      <input type="checkbox" id="boolean-and" />
+                      <label for="boolean-and">Boolean AND</label>
+                    </p>
+                    <p>
+                      <input type="checkbox" id="boolean-or" />
+                      <label for="boolean-or">Boolean OR</label>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12">
+                <a href="#!" class="modal-action modal-close waves-effect waves-light btn deep-orange">Done</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- Login Modal -->
+    <div id="login" class="modal">
+      <div class="modal-content">
+        <div class="row">
+          <form class="col s12" id="sign-in">
+            <div class="row">
+              <div class="col s6">
+                <h5 class="left-align">Sign In</h5>
+              </div>
+              <div class="col s6">
+                <h5 class="right-align">Magic Traq</h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="email" name="credentials[email]" type="email" class="validate">
+                <label for="email">Email</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="password" name="credentials[password]" type="password" class="validate">
+                <label for="password">Password</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12">
+                <button type="submit" name="submit" class="modal-close waves-effect waves-light btn deep-orange">Sign in</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12">
+                <a href="#!" id="open-register-page" data-target="register">Don't have an account?</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Register Modal -->
+    <div id="register" class="modal">
+      <div class="modal-content">
+        <div class="row">
+          <form class="col s12" id="sign-up">
+            <div class="row">
+              <div class="col s6">
+                <h5 class="left-align">Register</h5>
+              </div>
+              <div class="col s6">
+                <h5 class="right-align">Magic Traq</h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="email" name="credentials[email]" type="email" class="validate">
+                <label for="email">Email</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="password" name="credentials[password]" type="password" class="validate">
+                <label for="password">Password</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="password" name="credentials[password_confirmation]" type="password" class="validate">
+                <label for="password">Password</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12">
+                <button type="submit" name="submit" class="modal-close waves-effect waves-light btn deep-orange">Sign Up</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Account Modal -->
+    <div id="account" class="modal">
+      <div class="modal-content">
+        <div class="row">
+          <form class="col s12" id="change-pass">
+            <div class="row">
+              <div class="col s6">
+                <h5 class="left-align">Account</h5>
+              </div>
+              <div class="col s6">
+                <h5 class="right-align">Magic Traq</h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12">
+                <h5>Change your password</h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="password" name="passwords[old]" type="password" class="validate">
+                <label for="password">Current Password</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="password" name="passwords[new]" type="password" class="validate">
+                <label for="password">New Password</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12">
+                <button type="submit" name="submit" class="modal-close waves-effect waves-light btn deep-orange">Change Password</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- card display modal -->
+    <div id="card-display" class="modal">
+    </div>
+  </div>
+</body>
+
+</html>
