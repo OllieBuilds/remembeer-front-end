@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Remembeer</title>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+  <!-- Google Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="vendor.bundle.js" type="text/javascript" charset="utf-8"></script>
+  <script src="bundle.js" type="text/javascript" charset="utf-8"></script>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js" defer></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="nav-wrapper orange">
+      <a href="#" class="brand-logo">Remembeer</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#" data-id="search">Search</a></li>
+        <li class="hide-until-sign-in"><a href="#" data-id="my-beers">Beers</a></li>
+        <li class="hide-until-sign-in modal-trigger" data-target="account"><a data-id="my-account" href="#!">Account</a></li>
+        <!-- Login -->
+        <li class="show-until-sign-in"><a class="modal-trigger" data-target="login">Sign In</a></li>
+        <!-- Logout -->
+        <li class="hide-until-sign-in"><a class="hide-until-sign-in" id="sign-out-1">Sign Out</a></li>
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+        <li><a href="#" data-id="search">Search</a></li>
+        <li class="hide-until-sign-in"><a href="#" data-id="my-beers">Beers</a></li>
+        <li class="hide-until-sign-in modal-trigger" data-target="account"><a data-id="my-account" href="#!">Account</a></li>
+        <!-- Login -->
+        <li class="show-until-sign-in"><a class="modal-trigger" data-target="login">Sign In</a></li>
+        <!-- Logout -->
+        <li class="hide-until-sign-in"><a class="" id="sign-out-2">Sign Out</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <!-- row 1 -->
+    <!-- Search Form -->
+    <div class="row"></div>
+    <div class="row">
+      <form id="beer-search">
+        <div class="row">
+          <div class="input-field">
+            <input id="search" type="search" name="query">
+            <label for="search"><i class="material-icons">search</i></label>
+            <i class="material-icons">close</i>
+          </div>
+          <button class="waves-effect waves-light btn blue right-align" type="submit">Search</button>
+        </div>
+      </form>
+    </div>
+    <!-- search results -->
+    <div class="row">
+      <div class="col s12 m12 l12">
+        <section id="search-result-holder">
+          <!-- Search results and my collection show up here -->
+        </section>
+      </div>
+    </div>
+    <!-- row 2 -->
+    <!-- Login Modal -->
+    <div id="login" class="modal">
+      <div class="modal-content">
+        <div class="row">
+          <form class="col s12" id="sign-in">
+            <div class="row">
+              <div class="col s6">
+                <h5 class="left-align">Sign In</h5>
+              </div>
+              <div class="col s6">
+                <h5 class="right-align">Remembeer</h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="email" name="credentials[email]" type="email" class="validate">
+                <label for="email">Email</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="password" name="credentials[password]" type="password" class="validate">
+                <label for="password">Password</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12">
+                <button type="submit" name="submit" class="modal-close waves-effect waves-light btn blue">Sign in</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12">
+                <a href="#!" id="open-register-page" data-target="register">Don't have an account?</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Register Modal -->
+    <div id="register" class="modal">
+      <div class="modal-content">
+        <div class="row">
+          <form class="col s12" id="sign-up">
+            <div class="row">
+              <div class="col s6">
+                <h5 class="left-align">Register</h5>
+              </div>
+              <div class="col s6">
+                <h5 class="right-align">Remembeer</h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="email" name="credentials[email]" type="email" class="validate">
+                <label for="email">Email</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="password" name="credentials[password]" type="password" class="validate">
+                <label for="password">Password</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="password" name="credentials[password_confirmation]" type="password" class="validate">
+                <label for="password">Password</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12">
+                <button type="submit" name="submit" class="modal-close waves-effect waves-light btn blue">Sign Up</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Account Modal -->
+    <div id="account" class="modal">
+      <div class="modal-content">
+        <div class="row">
+          <form class="col s12" id="change-pass">
+            <div class="row">
+              <div class="col s6">
+                <h5 class="left-align">Account</h5>
+              </div>
+              <div class="col s6">
+                <h5 class="right-align">Remembeer</h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12">
+                <h5>Change your password</h5>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="password" name="passwords[old]" type="password" class="validate">
+                <label for="password">Current Password</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="password" name="passwords[new]" type="password" class="validate">
+                <label for="password">New Password</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s12">
+                <button type="submit" name="submit" class="modal-close waves-effect waves-light btn blue">Change Password</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- card display modal -->
+    <div id="card-display" class="modal">
+    </div>
+  </div>
+</body>
+
+</html>

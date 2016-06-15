@@ -1,0 +1,39 @@
+<table class="centered striped bordered card">
+  <thead>
+    <tr>
+      <th data-field="label">Label</th>
+      <th data-field="name">Name</th>
+      <th data-field="abv">ABV</th>
+      <th data-field="add-to-collection">Favorite</th>
+      <th data-field="remove-from-collection">Remove</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#beers}}
+      <tr>
+        <td>
+          <div class="valign-wrapper">
+            <img class="responsive-img valign" src="{{this.image}}">
+          </div>
+        </td>
+        <td>
+          {{this.name}}
+        </td>
+        <td>
+          {{this.abv}}
+        </td>
+        <td>
+          <button class="waves-effect waves-light btn {{#if this.favorite}}yellow{{else}}blue{{/if}}" data-button-id="favorite" data-bdb-id="{{this.bdb_id}}">
+            {{#if this.favorite}}
+              Unfavorite
+            {{else}}
+              Favorite
+            {{/if}}</button>
+        </td>
+        <td>
+          <button class="waves-effect waves-light btn red darken-3" data-button-id="remove" data-bdb-id="{{this.bdb_id}}">Remove</button>
+        </td>
+      </tr>
+    {{/beers}}
+  </tbody>
+</table>

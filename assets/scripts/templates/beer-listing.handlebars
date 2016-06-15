@@ -1,0 +1,26 @@
+<table class="centered striped bordered card">
+  <thead>
+    <tr>
+      <th data-field="label">Label</th>
+      <th data-field="name">Name</th>
+      <th data-field="abv">ABV</th>
+      <th data-field="add-to-collection">Remember</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each .}}
+      <tr>
+        <td>
+          <div class="valign-wrapper">
+            <img class="responsive-img valign" src="{{this.labels.medium}}">
+          </div>
+        </td>
+        <td>{{this.name}}</td>
+        <td>{{this.abv}}</td>
+        <td>
+          <button class="waves-effect waves-light btn deep-orange" data-beer-id="{{this.id}}">Remembeer</button>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
